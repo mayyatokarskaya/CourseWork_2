@@ -1,6 +1,8 @@
 import json
 import os
+
 from vacancy import Vacancy
+
 
 class VacancyStorage:
     """Класс для работы с вакансиями в JSON-файле"""
@@ -21,8 +23,8 @@ class VacancyStorage:
 
     def save_vacancies(self, vacancies):
         """Сохраняет список вакансий в JSON-файл"""
-        os.makedirs(os.path.dirname(self.file_path), exist_ok=True)  # Создаем папку, если её нет
-        data = [vac.__dict__ for vac in vacancies]  # Преобразуем в словари
+        os.makedirs(os.path.dirname(self.file_path), exist_ok=True)
+        data = [vac.__dict__ for vac in vacancies]
         with open(self.file_path, "w", encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
 

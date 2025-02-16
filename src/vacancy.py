@@ -2,18 +2,12 @@ class Vacancy:
     """Класс для представления вакансии"""
 
     def __init__(self, title: str, url: str, salary_from: int = 0, salary_to: int = 0, description: str = ""):
-        """
-        :param title: Название вакансии
-        :param url: Ссылка на вакансию
-        :param salary_from: Нижняя граница зарплаты
-        :param salary_to: Верхняя граница зарплаты
-        :param description: Краткое описание вакансии
-        """
+        """конструктор класса"""
         self.title = title
         self.url = url
-        self.salary_from = salary_from if salary_from else 0  # Если зарплата не указана, ставим 0
+        self.salary_from = salary_from if salary_from else 0
         self.salary_to = salary_to if salary_to else 0
-        self.description = description if description is not None else "Описание отсутствует"  # Убедимся, что description - строка
+        self.description = description if description is not None else "Описание отсутствует"
 
     def get_salary_range(self):
         """Возвращает диапазон зарплаты"""
@@ -28,14 +22,18 @@ class Vacancy:
 
     def __str__(self):
         """Красивый вывод информации о вакансии"""
-        salary_info = f"{self.salary_from} - {self.salary_to} руб." if self.salary_from or self.salary_to else "Зарплата не указана"
+        salary_info = (
+            f"{self.salary_from} - {self.salary_to} руб."
+            if self.salary_from or self.salary_to
+            else "Зарплата не указана"
+        )
         return f"{self.title} ({salary_info})\n{self.url}\n{self.description[:100]}..."
 
     def __lt__(self, other):
         """Сравнение вакансий по зарплате"""
         self_min, self_max = self.get_salary_range()
         other_min, other_max = other.get_salary_range()
-        return self_max < other_max  # Можно изменить на self_min, если хотите сравнивать по минимальной зарплате
+        return self_max < other_max
 
     def __gt__(self, other):
         """Сравнение вакансий по зарплате"""

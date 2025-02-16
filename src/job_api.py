@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+
 import requests
 
 
@@ -7,13 +8,7 @@ class JobAPI(ABC):
 
     @abstractmethod
     def get_vacancies(self, search_query: str, page: int = 0, per_page: int = 10):
-        """
-        Получает вакансии с сервиса.
-        :param search_query: строка запроса (например, "Python разработчик").
-        :param page: номер страницы (по умолчанию 0).
-        :param per_page: количество вакансий на странице (по умолчанию 10).
-        :return: список вакансий.
-        """
+        """Получает вакансии с сервиса"""
         pass
 
 
@@ -24,12 +19,7 @@ class HeadHunterAPI(JobAPI):
 
     def get_vacancies(self, search_query: str, page: int = 0, per_page: int = 10):
         """Получает вакансии с hh.ru"""
-        params = {
-            "text": search_query,  # Поисковый запрос
-            "area": 113,  # Код России в hh.ru
-            "page": page,
-            "per_page": per_page
-        }
+        params = {"text": search_query, "area": 113, "page": page, "per_page": per_page}  # Код России в hh.ru
 
         response = requests.get(self.BASE_URL, params=params)
 
