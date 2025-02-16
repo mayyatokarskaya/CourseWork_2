@@ -13,16 +13,29 @@ class Vacancy:
         self.url = url
         self.salary_from = salary_from if salary_from else 0  # Если зарплата не указана, ставим 0
         self.salary_to = salary_to if salary_to else 0
-        self.description = description
+        self.description = description if description is not None else "Описание отсутствует"  # Убедимся, что description - строка
+
+    def get_salary_range(self):
+        """Возвращает диапазон зарплаты"""
+        if self.salary_from and self.salary_to:
+            return (self.salary_from, self.salary_to)
+        elif self.salary_from:
+            return (self.salary_from, self.salary_from)
+        elif self.salary_to:
+            return (self.salary_to, self.salary_to)
+        else:
+            return (0, 0)
 
     def __str__(self):
         """Красивый вывод информации о вакансии"""
         salary_info = f"{self.salary_from} - {self.salary_to} руб." if self.salary_from or self.salary_to else "Зарплата не указана"
-        return f"{self.title} ({salary_info})\n{self.url}\n{self.description[:100]}..."  # Описание сокращаем
+        return f"{self.title} ({salary_info})\n{self.url}\n{self.description[:100]}..."
 
     def __lt__(self, other):
-        """Сравнение вакансий по зарплате (для сортировки)"""
-        return self.salary_from < other.salary_from
+        """Сравнение вакансий по зарплате"""
+        self_min, self_max = self.get_salary_range()
+        other_min, other_max = other.get_salary_range()
+        return self_max < other_max  # Можно изменить на self_min, если хотите сравнивать по минимальной зарплате
 
     def __gt__(self, other):
         """Сравнение вакансий по зарплате"""

@@ -30,9 +30,9 @@ class JSONSaver:
 
     def add_vacancy(self, vacancy):
         """Добавляет новую вакансию в JSON-файл"""
-        vacancies = self.load_vacancies()
-        vacancies.append(vacancy)
-        self.save_vacancies(vacancies)
+        vacancies = self.load_vacancies()  # Загружаем текущие вакансии
+        vacancies.append(vacancy)  # Добавляем новую
+        self.save_vacancies(vacancies)  # Пересохраняем с обновленным списком
 
     def delete_vacancy(self, vacancy_title):
         """Удаляет вакансию по названию"""
