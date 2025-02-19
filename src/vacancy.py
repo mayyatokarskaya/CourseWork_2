@@ -1,10 +1,10 @@
 class Vacancy:
     """Класс для представления вакансии"""
 
-    __slots__ = ('title', 'url', 'salary_from', 'salary_to', 'description')
+    __slots__ = ("title", "url", "salary_from", "salary_to", "description")
 
     def __init__(self, title: str, url: str, salary_from: int = 0, salary_to: int = 0, description: str = ""):
-        """Конструктор класса"""
+        """конструктор класса"""
         self.title = title
         self.url = url
         self.salary_from = salary_from if salary_from else 0
