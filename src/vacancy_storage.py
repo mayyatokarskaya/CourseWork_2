@@ -24,7 +24,16 @@ class VacancyStorage:
     def save_vacancies(self, vacancies):
         """Сохраняет список вакансий в JSON-файл"""
         os.makedirs(os.path.dirname(self.file_path), exist_ok=True)
-        data = [vac.__dict__ for vac in vacancies]
+        data = [
+            {
+                "title": vac.title,
+                "url": vac.url,
+                "salary_from": vac.salary_from,
+                "salary_to": vac.salary_to,
+                "description": vac.description
+            }
+            for vac in vacancies
+        ]
         with open(self.file_path, "w", encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
 
