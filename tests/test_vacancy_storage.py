@@ -4,8 +4,9 @@ import sys
 import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
-from src.vacancy import Vacancy
-from src.vacancy_storage import VacancyStorage
+
+from src.vacancy import Vacancy  # noqa: E402
+from src.vacancy_storage import VacancyStorage  # noqa: E402
 
 
 @pytest.fixture
@@ -21,7 +22,7 @@ def sample_vacancies():
     return [
         Vacancy("Python Developer", "https://example.com/python", 100000, 150000, "Опыт работы с Python"),
         Vacancy("Data Scientist", "https://example.com/ds", 120000, 180000, "Опыт работы с ML"),
-        Vacancy("QA Engineer", "https://example.com/qa", 80000, 120000, "Тестирование ПО")
+        Vacancy("QA Engineer", "https://example.com/qa", 80000, 120000, "Тестирование ПО"),
     ]
 
 
@@ -63,15 +64,6 @@ def test_filter_vacancies(temp_storage, sample_vacancies):
 
     assert len(filtered) == 1
     assert filtered[0].title == "Python Developer"
-
-
-# def test_filter_vacancies_by_salary(temp_storage, sample_vacancies):
-#     """Тест фильтрации вакансий по зарплате"""
-#     temp_storage.save_vacancies(sample_vacancies)
-#     filtered = temp_storage.filter_vacancies_by_salary(90000, 160000)
-#
-#     assert len(filtered) == 2
-#     assert all(90000 <= vac.salary_from <= 160000 for vac in filtered)
 
 
 def test_sort_vacancies_by_salary(temp_storage, sample_vacancies):

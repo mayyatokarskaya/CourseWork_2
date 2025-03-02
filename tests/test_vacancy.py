@@ -59,7 +59,7 @@ def test_from_dict():
         "name": "Data Scientist",
         "alternate_url": "https://example.com",
         "salary": {"from": 100000, "to": 150000},
-        "snippet": {"requirement": "Опыт работы 3 года"}
+        "snippet": {"requirement": "Опыт работы 3 года"},
     }
 
     vacancy = Vacancy.from_dict(vacancy_data)

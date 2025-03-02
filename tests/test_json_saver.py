@@ -1,7 +1,9 @@
 import os
+
 import pytest
-from src.vacancy import Vacancy
+
 from src.json_saver import JSONSaver
+from src.vacancy import Vacancy
 
 
 @pytest.fixture(scope="function")

@@ -1,5 +1,6 @@
 import json
 import os
+
 from src.vacancy import Vacancy
 
 
@@ -34,9 +35,6 @@ class JSONSaver:
         ]
         with open(self.file_path, "w", encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
-
-
-
 
     def load_vacancies(self):
         """Загружает вакансии из JSON-файла"""

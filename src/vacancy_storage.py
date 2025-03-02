@@ -30,7 +30,7 @@ class VacancyStorage:
                 "url": vac.url,
                 "salary_from": vac.salary_from,
                 "salary_to": vac.salary_to,
-                "description": vac.description
+                "description": vac.description,
             }
             for vac in vacancies
         ]
